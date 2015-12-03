@@ -1,0 +1,5 @@
+.DS_Store
+*.swp
+node_modules
+.settings/
+data_visualize/nbproject

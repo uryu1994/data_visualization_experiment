@@ -1,0 +1,40 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+
+/*
+    Created on : 2015/04/21, 15:04:57
+    Author     : uryu1994
+*/
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  height: 100%;
+}
+
+div#canvas-frame {
+  width: 1600px;
+  height: 900px;
+  margin: 10px auto;
+}
+
+div#controll-button, #select, #result {
+  width: 50%;
+  height: 100%;
+  margin: 10px auto;
+}
+
+div#progrss-bar {
+  margin: 10px auto;
+}
+
+label {
+  margin: 0px 10px 0px 0px;
+}
