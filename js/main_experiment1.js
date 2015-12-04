@@ -118,13 +118,16 @@ var cubeRandomObjects,
 
 var count;
 
+var targetobjects_num = 3;
+var objects_num = 500;
+
 /**
  * オブジェクトを生成します
  */
 function createObject() {
-    cubeRandomObjects = new Array(997);
-    distinctiveObjects = new Array(3);
-    rayReceiveObjects = new Array(3);
+    cubeRandomObjects = new Array(objects_num - targetobjects_num);
+    distinctiveObjects = new Array(targetobjects_num);
+    rayReceiveObjects = new Array(targetobjects_num);
     count = rayReceiveObjects.length;
     for (var i = 0; i < cubeRandomObjects.length; i++) {
         cubeRandomObjects[i] = new CubeObject();

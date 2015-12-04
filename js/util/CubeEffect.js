@@ -192,6 +192,8 @@ function moveStraightObject(cube, x, y, z, period) {
  * @return {CubeObject}        座標が変わった後の物体
  */
 function moveStraightRepeatObject(cube, x, y, z, period, width) {
+    // 周期として使える形に変換
+    period = 360 / (period * 60);
     /* x軸方向 */
     if (x == 1) {
         cube.obj.position.x = width * Math.sin(

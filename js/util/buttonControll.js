@@ -10,6 +10,7 @@ function stopButton() {
     document.getElementById('start').disabled = true;
     document.getElementById('stop').disabled = true;
     started = false;
+    initEvent();
     report();
 }
 
