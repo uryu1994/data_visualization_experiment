@@ -12,6 +12,12 @@ var mainCameraObject;
 var playback = true;
 
 /**
+ * 実験の種類を示す変数(0は色無し, 1は色付き)
+ * @experimentType {Number}
+ */
+var experimentType = 0;
+
+/**
  * three.jsを開始します
  */
 function threeStart() {
@@ -118,13 +124,16 @@ var cubeRandomObjects,
 
 var count;
 
+var targetobjects_num = 3;
+var objects_num = 500;
+
 /**
  * オブジェクトを生成します
  */
 function createObject() {
-    cubeRandomObjects = new Array(997);
-    distinctiveObjects = new Array(3);
-    rayReceiveObjects = new Array(3);
+    cubeRandomObjects = new Array(objects_num - targetobjects_num);
+    distinctiveObjects = new Array(targetobjects_num);
+    rayReceiveObjects = new Array(objects_num);
     count = rayReceiveObjects.length;
     for (var i = 0; i < cubeRandomObjects.length; i++) {
         cubeRandomObjects[i] = new CubeObject();
@@ -135,7 +144,9 @@ function createObject() {
             0,
             i
         );
+        cubeRandomObjects[i].obj.content = 'distractor';
         scene.add(cubeRandomObjects[i].obj);
+        rayReceiveObjects[i] = cubeRandomObjects[i].obj;
     }
 
     for (var j = 0; j < distinctiveObjects.length; j++) {
@@ -147,8 +158,9 @@ function createObject() {
             1,
             j
         );
+        distinctiveObjects[j].obj.content = 'target';
         scene.add(distinctiveObjects[j].obj);
-        rayReceiveObjects[j] = distinctiveObjects[j].obj;
+        rayReceiveObjects[i+j] = distinctiveObjects[j].obj;
     }
 }
 

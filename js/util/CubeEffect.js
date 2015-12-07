@@ -130,6 +130,7 @@ function changeSpecular(cube) {
  * @return {CubeObject} cube    変化したCubeObjectを返す
  */
 function flashObject(cube, period) {
+    period = periodToFpsPeriod(period);
     cube.obj.material.shininess = Math.cos(cube.time.flashTime * (Math.PI / 180)) * 255;
     cube.time.flashTime += period;
     return cube;
@@ -192,6 +193,8 @@ function moveStraightObject(cube, x, y, z, period) {
  * @return {CubeObject}        座標が変わった後の物体
  */
 function moveStraightRepeatObject(cube, x, y, z, period, width) {
+    // 周期として使える形に変換
+    period = periodToFpsPeriod(period);
     /* x軸方向 */
     if (x == 1) {
         cube.obj.position.x = width * Math.sin(
@@ -254,4 +257,13 @@ function changeScale(cube, mode, period, width) {
 
     cube.time.changeScaleTime++;
     return cube;
+}
+
+/**
+ * 周期をfpsに応じた周期に変換
+ * @param  {Number} period 周期
+ * @return {Number}        fpsに応じた周期を返す
+ */
+function periodToFpsPeriod(period) {
+    return 360 / (period * 60);
 }

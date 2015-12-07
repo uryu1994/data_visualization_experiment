@@ -12,7 +12,6 @@ var CubeObject = function() {
     this.material = new THREE.MeshPhongMaterial();
     this.color = new THREE.Color();
     this.specular = new THREE.Color();
-
     this.obj = new THREE.Mesh(this.geometry, this.material);
     this.obj_pos = {
         x: 0,
@@ -36,11 +35,15 @@ var CubeObject = function() {
         changeScaleTime: 0
     };
 
+    this.obj['clicked'] = 0;
+    this.obj['content'];
+
 }
 
 CubeObject.prototype.createCubeObject = function(x, y, z, type, num) {
     this.obj.position.set(x, y, z);
-    this.color = selectColor(type, num);
+    //this.color = selectColor(type, num);
+    this.color = new THREE.Color("rgb(255, 255, 255)");
     this.specular.setRGB(
         Math.random(),
         Math.random(),
