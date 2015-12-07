@@ -12,7 +12,6 @@ var CubeObject = function() {
     this.material = new THREE.MeshPhongMaterial();
     this.color = new THREE.Color();
     this.specular = new THREE.Color();
-
     this.obj = new THREE.Mesh(this.geometry, this.material);
     this.obj_pos = {
         x: 0,
@@ -35,6 +34,9 @@ var CubeObject = function() {
         moveStraightRepeatTime: 0,
         changeScaleTime: 0
     };
+
+    this.obj['clicked'] = 0;
+    this.obj['content'];
 
 }
 

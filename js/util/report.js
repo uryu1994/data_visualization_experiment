@@ -12,7 +12,14 @@ function report() {
     for(var j = 0; j < cubeRandomObjects.length; j++) {
         cubeRandomObjects[j].resetObject();
     }
+    if(experimentType == 0) {
+        positionReport();
+    } else if(experimentType == 1){
+        colorReport();
+    }
+}
 
+function colorReport() {
     var select = document.getElementById('select');
     var selectForm = document.createElement('form');
     selectForm.name = 'selectForm';
@@ -32,10 +39,25 @@ function report() {
     sendButton.type = 'button';
     sendButton.value = '解答';
     sendButton.className = "btn btn-default";
-    var func = "answer();";
+    var func = "colorAnswer();";
     sendButton.setAttribute('onclick', func);
     selectForm.appendChild(sendButton);
+}
 
+function positionReport() {
+    initEvent();
+    var select = document.getElementById('select');
+    var selectForm = document.createElement('form');
+    selectForm.name = 'selectForm';
+    select.appendChild(selectForm);
+
+    var sendButton = document.createElement('input');
+    sendButton.type = 'button';
+    sendButton.value = "解答";
+    sendButton.className = "btn btn-default";
+    var func = "positionAnswer()";
+    sendButton.setAttribute('onclick', func);
+    selectForm.appendChild(sendButton);
 }
 
 function result() {
@@ -45,8 +67,30 @@ function result() {
     + colorLabel[distinctiveColor[2]] + "です。"
 }
 
-function answer() {
-    var checkedBox = new Array(3);
+function positionAnswer() {
+    var selectCount = 0;
+    var answerCount = 0;
+    for(var i = 0; i < cubeRandomObjects.length; i++) {
+        if(cubeRandomObjects[i].obj.clicked==1) {
+            selectCount++;
+        }
+    }
+    for(var j = 0; j < distinctiveObjects.length; j++) {
+        if(distinctiveObjects[j].obj.clicked==1) {
+            selectCount++;
+            answerCount++;
+        }
+    }
+    if(selectCount!=targetobjects_num) {
+        alert(targetobjects_num+"つ選択してください。");
+    } else {
+        document.getElementById('result_count')
+        .innerHTML = targetobjects_num + "個中" + answerCount + "個正解";
+    }
+}
+
+function colorAnswer() {
+    var checkedBox = new Array(targetobjects_num);
     var checkNum=0;
 
     for(var i = 0; i < document.selectForm.selectColor.length; i++) {
@@ -55,7 +99,7 @@ function answer() {
             checkNum++;
         }
     }
-    if(checkNum != 3) {
+    if(checkNum != targetobjects_num) {
         alert('3つ選択してください。');
     } else {
         var correctCount = 0;
