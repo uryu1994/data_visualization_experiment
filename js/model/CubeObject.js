@@ -40,10 +40,14 @@ var CubeObject = function() {
 
 }
 
-CubeObject.prototype.createCubeObject = function(x, y, z, type, num) {
+CubeObject.prototype.createCubeObject = function(x, y, z, type, num, experimentType) {
     this.obj.position.set(x, y, z);
-    //this.color = selectColor(type, num);
-    this.color = new THREE.Color("rgb(255, 255, 255)");
+    if(experimentType == 1) {
+        this.color = selectColor(type, num);
+    } else {
+        this.color = new THREE.Color("rgb(255, 255, 255)");
+    }
+
     this.specular.setRGB(
         Math.random(),
         Math.random(),

@@ -160,6 +160,7 @@ function vibrateObject(cube) {
  * @return {CubeObject}        移動後の情報が記録された物体を返す
  */
 function moveStraightObject(cube, x, y, z, period) {
+    period = periodToFpsPeriod(period);
     /* X軸方向 */
     if (x == 1) {
         cube.obj.position.x += period;
@@ -241,6 +242,7 @@ function moveStraightRepeatObject(cube, x, y, z, period, width) {
  * @return {CubeObject}        大きさが変化した後の物体
  */
 function changeScale(cube, mode, period, width) {
+    period = periodToFpsPeriod(period);
     if(mode == 1) {
         cube.obj.scale.set(
             width * Math.pow(Math.sin(period * cube.time.changeScaleTime * (Math.PI/180)), 2) + 1,
