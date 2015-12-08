@@ -25,8 +25,8 @@ function threeStart() {
     mainCameraObject = new MainCameraObject();
     initLight();
     distinctiveColorPattern();
-    createObject();
     before();
+    createObject();
     startTimer();
     loop();
 }
@@ -142,7 +142,8 @@ function createObject() {
             Math.random() * 1000 - 500,
             Math.random() * 1000 - 500,
             0,
-            i
+            i,
+            experimentType
         );
         cubeRandomObjects[i].obj.content = 'distractor';
         scene.add(cubeRandomObjects[i].obj);
@@ -156,7 +157,8 @@ function createObject() {
             Math.random() * 1000 - 500,
             Math.random() * 1000 - 500,
             1,
-            j
+            j,
+            experimentType
         );
         distinctiveObjects[j].obj.content = 'target';
         scene.add(distinctiveObjects[j].obj);
