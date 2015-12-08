@@ -16,6 +16,14 @@ function report() {
         positionReport();
     } else if(experimentType == 1){
         colorReport();
+    } else if(experimentType == 2) {
+        for(var i = 0; i < distinctiveObjects.length; i++) {
+            distinctiveObjects[i].material.color.set(selectColor(1, i));
+        }
+        for(var j = 0; j < cubeRandomObjects.length; j++) {
+            cubeRandomObjects[j].material.color.set(selectColor(0, j));
+        }
+        colorReport();
     }
 }
 

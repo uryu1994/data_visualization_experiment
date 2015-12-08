@@ -25,8 +25,8 @@ function threeStart() {
     mainCameraObject = new MainCameraObject();
     initLight();
     distinctiveColorPattern();
-    before();
     createObject();
+    before();
     startTimer();
     loop();
 }
