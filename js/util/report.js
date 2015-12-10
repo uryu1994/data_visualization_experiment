@@ -5,13 +5,17 @@
 var colorSelectCheck = new Array(7);
 
 function report() {
-    for(var i = 0; i < distinctiveObjects.length; i++) {
-        distinctiveObjects[i].resetObject();
+    if(resetPosition == true) {
+        for(var i = 0; i < distinctiveObjects.length; i++) {
+            distinctiveObjects[i].resetObject();
+        }
+
+        for(var j = 0; j < cubeRandomObjects.length; j++) {
+            cubeRandomObjects[j].resetObject();
+        }
+        
     }
 
-    for(var j = 0; j < cubeRandomObjects.length; j++) {
-        cubeRandomObjects[j].resetObject();
-    }
     if(experimentType == 0) {
         positionReport();
     } else if(experimentType == 1){
@@ -41,6 +45,7 @@ function colorReport() {
         var label = document.createElement('label');
         label.appendChild(colorSelectCheck[i]);
         label.appendChild(document.createTextNode(colorLabel[i]+ " "));
+        // label.appendChild(document.createTextNode("■ "));
         selectForm.appendChild(label);
     }
     var sendButton = document.createElement('input');
