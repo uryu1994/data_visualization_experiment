@@ -16,6 +16,7 @@ var playback = true;
  * @experimentType {Number}
  */
 var experimentType = 0;
+var resetPosition = true;
 
 /**
  * three.jsを開始します
@@ -25,8 +26,8 @@ function threeStart() {
     mainCameraObject = new MainCameraObject();
     initLight();
     distinctiveColorPattern();
-    before();
     createObject();
+    before();
     startTimer();
     loop();
 }

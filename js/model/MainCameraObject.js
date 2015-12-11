@@ -15,7 +15,7 @@ var MainCameraObject = function() {
 
     /* initCamera */
     this.camera.position.set(1000, 1000, 1000);
-    this.camera.up.set(0, 1, 0);
+    this.camera.up.set(0, 0, 1);
     this.camera.lookAt({
         x: 0,
         y: 0,
