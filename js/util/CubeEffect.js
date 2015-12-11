@@ -126,11 +126,11 @@ function changeSpecular(cube) {
 
 /** 周期的に点滅させる
  * @param  {CubeObject} cube    変化させるCubeObject
- * @param  {number}     period  周期
+ * @param  {number}     helz    時間周波数
  * @return {CubeObject} cube    変化したCubeObjectを返す
  */
-function flashObject(cube, period) {
-    period = periodToFpsPeriod(period);
+function flashObject(cube, helz) {
+    var period = periodToFpsPeriod(helzToPeriod(helz));
     cube.obj.material.shininess = Math.cos(cube.time.flashTime * (Math.PI / 180)) * 255;
     cube.time.flashTime += period;
     return cube;
@@ -156,11 +156,12 @@ function vibrateObject(cube) {
  * @param  {number}     x      X軸方向に動かすかどうかの判定
  * @param  {number}     y      Y軸方向に動かすかどうかの判定
  * @param  {number}     z      Z軸方向に動かすかどうかの判定
- * @param  {number}     period 1回あたりどれだけ動かすか
+ * @param  {number}     helz   時間周波数
  * @return {CubeObject}        移動後の情報が記録された物体を返す
  */
-function moveStraightObject(cube, x, y, z, period) {
-    period = periodToFpsPeriod(period);
+function moveStraightObject(cube, x, y, z, helz) {
+
+    var period = periodToFpsPeriod(helzToPeriod(helz));
     /* X軸方向 */
     if (x == 1) {
         cube.obj.position.x += period;
@@ -189,13 +190,13 @@ function moveStraightObject(cube, x, y, z, period) {
  * @param  {number}     x      x軸方向(1で正の方向, -1で負の方向)
  * @param  {number}     y      y軸方向(1で正の方向, -1で負の方向)
  * @param  {number}     z      z軸方向(1で正の方向, -1で負の方向)
- * @param  {number}     period 周期
+ * @param  {number}     helz   時間周波数(Hz)
  * @param  {number}     width  往復する幅(初期位置から)
  * @return {CubeObject}        座標が変わった後の物体
  */
-function moveStraightRepeatObject(cube, x, y, z, period, width) {
+function moveStraightRepeatObject(cube, x, y, z, helz, width) {
     // 周期として使える形に変換
-    period = periodToFpsPeriod(period);
+    var period = periodToFpsPeriod(helzToPeriod(helz));
     /* x軸方向 */
     if (x == 1) {
         cube.obj.position.x = width * Math.sin(
@@ -268,4 +269,13 @@ function changeScale(cube, mode, period, width) {
  */
 function periodToFpsPeriod(period) {
     return 360 / (period * 60);
+}
+
+/**
+ * 時間周波数(Hz)を周期(s)に変換
+ * @param  {number} helz 時間周波数(Hz)
+ * @return {number}      周期(s)
+ */
+function helzToPeriod(helz) {
+    return 1.00 / helz;
 }
