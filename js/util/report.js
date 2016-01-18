@@ -82,8 +82,8 @@ function result() {
     + colorLabel[distinctiveColor[1]] + ", "
     + colorLabel[distinctiveColor[2]] + "です。";
 
-    document.getElementById("timer").innerHTML = "探索時間:" + move_seconds +"秒"
-    + " 発見時間:"+ find_seconds + "秒";
+    document.getElementById('timer').innerHTML = "探索時間:" + move_seconds +"秒"
+    + " 発見時間:"+ target_seconds + "秒";
 }
 
 function positionAnswer() {
@@ -104,7 +104,7 @@ function positionAnswer() {
         alert(targetobjects_num+"つ選択してください。");
     } else {
         document.getElementById('result_count')
-        .innerHTML = targetobjects_num + "個中" + answerCount + "個正解";
+        .innerHTML = targetobjects_num + "個中" + answerCount + "個正解 "+"正答率:"+(answerCount/targetobjects_num)*100+"%";
     }
 }
 
@@ -127,7 +127,7 @@ function colorAnswer() {
                 correctCount++;
             }
         }
-        document.getElementById('result_count').innerHTML = "3個中"+correctCount+"個正解";
+        document.getElementById('result_count').innerHTML = "3個中"+correctCount+"個正解"+"正答率:"+Math.round((correctCount/3)*100)+"%";
         result();
     }
 }

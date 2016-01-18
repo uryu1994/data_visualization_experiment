@@ -12,10 +12,15 @@ var mainCameraObject;
 var playback = true;
 
 /**
- * 実験の種類を示す変数(0は色無し, 1は色付き)
- * @experimentType {Number}
+ * 実験の種類を示す変数(0は色無し, 1は色付き, 2は探索時は色なし・指定時に色がつく)
+ * @type {Number}
  */
-var experimentType = 0;
+var experimentType = 2;
+
+/**
+ * 報告時に元の場所に戻すか判別する変数
+ * @type {Boolean}
+ */
 var resetPosition = true;
 
 /**
