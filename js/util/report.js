@@ -5,16 +5,28 @@
 var colorSelectCheck = new Array(7);
 
 function report() {
-    for(var i = 0; i < distinctiveObjects.length; i++) {
-        distinctiveObjects[i].resetObject();
+    if(resetPosition == true) {
+        for(var i = 0; i < distinctiveObjects.length; i++) {
+            distinctiveObjects[i].resetObject();
+        }
+
+        for(var j = 0; j < cubeRandomObjects.length; j++) {
+            cubeRandomObjects[j].resetObject();
+        }
+
     }
 
-    for(var j = 0; j < cubeRandomObjects.length; j++) {
-        cubeRandomObjects[j].resetObject();
-    }
     if(experimentType == 0) {
         positionReport();
     } else if(experimentType == 1){
+        colorReport();
+    } else if(experimentType == 2) {
+        for(var i = 0; i < distinctiveObjects.length; i++) {
+            distinctiveObjects[i].material.color.set(selectColor(1, i));
+        }
+        for(var j = 0; j < cubeRandomObjects.length; j++) {
+            cubeRandomObjects[j].material.color.set(selectColor(0, j));
+        }
         colorReport();
     }
 }
@@ -31,8 +43,11 @@ function colorReport() {
         colorSelectCheck[i].value = i;
         colorSelectCheck[i].name = 'selectColor';
         var label = document.createElement('label');
+        label.style.color = colordata[i];
+        label.style.backgroundColor = "rgb(0, 0, 0)"
         label.appendChild(colorSelectCheck[i]);
         label.appendChild(document.createTextNode(colorLabel[i]+ " "));
+        // label.appendChild(document.createTextNode("■ "));
         selectForm.appendChild(label);
     }
     var sendButton = document.createElement('input');
@@ -61,10 +76,14 @@ function positionReport() {
 }
 
 function result() {
+    first_st = false;
     document.getElementById('result_color').innerHTML = "正解は、"
     + colorLabel[distinctiveColor[0]] + ", "
     + colorLabel[distinctiveColor[1]] + ", "
-    + colorLabel[distinctiveColor[2]] + "です。"
+    + colorLabel[distinctiveColor[2]] + "です。";
+
+    document.getElementById('timer').innerHTML = "探索時間:" + move_seconds +"秒"
+    + " 発見時間:"+ target_seconds + "秒";
 }
 
 function positionAnswer() {
@@ -85,7 +104,7 @@ function positionAnswer() {
         alert(targetobjects_num+"つ選択してください。");
     } else {
         document.getElementById('result_count')
-        .innerHTML = targetobjects_num + "個中" + answerCount + "個正解";
+        .innerHTML = targetobjects_num + "個中" + answerCount + "個正解 "+"正答率:"+(answerCount/targetobjects_num)*100+"%";
     }
 }
 
@@ -108,7 +127,7 @@ function colorAnswer() {
                 correctCount++;
             }
         }
-        document.getElementById('result_count').innerHTML = "3個中"+correctCount+"個正解";
+        document.getElementById('result_count').innerHTML = "3個中"+correctCount+"個正解"+"正答率:"+Math.round((correctCount/3)*100)+"%";
         result();
     }
 }

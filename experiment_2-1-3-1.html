@@ -7,11 +7,17 @@
   <script src="js/util/import.js"></script>
   <script type="text/javascript">
     <!--
+    resetPosition = false;
     /**
      * 事前処理を記述
      */
     function before() {
-
+      for(var i = 0; i < distinctiveObjects.length; i++) {
+        distinctiveObjects[i].obj.position.z = Math.random() * 500;
+        distinctiveObjects[i].obj_pos.x = distinctiveObjects[i].obj.position.x;
+        distinctiveObjects[i].obj_pos.y = distinctiveObjects[i].obj.position.y;
+        distinctiveObjects[i].obj_pos.z = distinctiveObjects[i].obj.position.z;
+      }
     }
 
     /**
@@ -19,11 +25,11 @@
      */
     function experimentEffect() {
       for (var i = 0; i < distinctiveObjects.length; i++) {
-        moveStraightRepeatObject(distinctiveObjects[i], 1, 0, 0, 0.5, 10);
+        moveStraightRepeatObject(distinctiveObjects[i], 1, 0, 0, 1.25, 10);
       }
 
       for (var j = 0; j < cubeRandomObjects.length; j++) {
-        moveStraightRepeatObject(cubeRandomObjects[j], 1, 0, 0, 0.25, 10);
+        moveStraightRepeatObject(cubeRandomObjects[j], 1, 0, 0, 1.0, 10);
       }
     }
     // -->
@@ -42,13 +48,13 @@
     <button type="button" class="btn btn-default" id="stop" area-label="Left Allign" value="stop" onclick="buttonPushed(this)" disabled="true">
       Stop
     </button>
-    <span id="timer"></span>
   </div>
   <div id="select">
   </div>
   <div id="result">
     <span id="result_count"></span>
     <span id="result_color"></span>
+    <span id="timer"></span>
   </div>
   <script src="js/bootstrap.min.js"></script>
 </body>

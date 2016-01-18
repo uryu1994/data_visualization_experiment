@@ -12,10 +12,16 @@ var mainCameraObject;
 var playback = true;
 
 /**
- * 実験の種類を示す変数(0は色無し, 1は色付き)
- * @experimentType {Number}
+ * 実験の種類を示す変数(0は色無し, 1は色付き, 2は探索時は色なし・指定時に色がつく)
+ * @type {Number}
  */
-var experimentType = 0;
+var experimentType = 2;
+
+/**
+ * 報告時に元の場所に戻すか判別する変数
+ * @type {Boolean}
+ */
+var resetPosition = true;
 
 /**
  * three.jsを開始します
@@ -142,7 +148,8 @@ function createObject() {
             Math.random() * 1000 - 500,
             Math.random() * 1000 - 500,
             0,
-            i
+            i,
+            experimentType
         );
         cubeRandomObjects[i].obj.content = 'distractor';
         scene.add(cubeRandomObjects[i].obj);
@@ -156,7 +163,8 @@ function createObject() {
             Math.random() * 1000 - 500,
             Math.random() * 1000 - 500,
             1,
-            j
+            j,
+            experimentType
         );
         distinctiveObjects[j].obj.content = 'target';
         scene.add(distinctiveObjects[j].obj);
